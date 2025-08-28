@@ -7,7 +7,7 @@ import Vendas from "../pages/Vendas";
 import Clientes from "../pages/Clientes";
 import Configuracoes from "../pages/Configuracoes";
 
-export default function AppRoutes() {
+const AppRoutes: React.FC = () => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
@@ -20,4 +20,6 @@ export default function AppRoutes() {
       </Route>
     </Routes>
   );
-}
+};
+
+export default AppRoutes;

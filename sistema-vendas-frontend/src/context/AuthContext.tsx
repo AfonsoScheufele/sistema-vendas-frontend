@@ -1,5 +1,4 @@
-import { createContext, useState, ReactNode, useEffect } from "react";
-import api from "../services/api";
+import React, { createContext, useState, ReactNode } from "react";
 
 interface AuthContextProps {
   user: any;
@@ -9,13 +8,12 @@ interface AuthContextProps {
 
 export const AuthContext = createContext<AuthContextProps | null>(null);
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
+export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<any>(null);
 
   const login = async (email: string, senha: string) => {
-    const res = await api.post("/auth/login", { email, senha });
-    setUser(res.data.user);
-    localStorage.setItem("token", res.data.token);
+    const userData = await import("../services/auth").then(mod => mod.login(email, senha));
+    setUser(userData);
   };
 
   const logout = () => {
