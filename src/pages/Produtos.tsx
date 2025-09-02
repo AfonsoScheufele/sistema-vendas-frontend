@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/api";
 import ProdutoForm from "../components/ProdutoForm";
+import "../index.css";
 
 interface Produto {
   id?: number;

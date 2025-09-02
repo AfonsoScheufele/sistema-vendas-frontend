@@ -1,28 +1,21 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "../pages/Login";
-import Produtos from "../pages/Produtos";
+import Dashboard from "../pages/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 
 export default function AppRoutes() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* Rota de login */}
-        <Route path="/login" element={<Login />} />
-
-        {/* Rota privada para produtos */}
-        <Route
-          path="/produtos"
-          element={
-            <PrivateRoute>
-              <Produtos />
-            </PrivateRoute>
-          }
-        />
-
-        {/* Redireciona qualquer outra rota para login */}
-        <Route path="*" element={<Login />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route
+        path="/dashboard/*"
+        element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        }
+      />
+      <Route path="/" element={<Navigate to="/login" replace />} />
+    </Routes>
   );
 }

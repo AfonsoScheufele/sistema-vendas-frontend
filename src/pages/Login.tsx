@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/api";
+import "../index.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ export default function Login() {
     try {
       const res = await api.post("/login", { email, senha });
       localStorage.setItem("token", res.data.token);
-      navigate("/produtos");
+      navigate("/dashboard");
     } catch (err: any) {
       setErro(err.response?.data?.mensagem || "Erro ao fazer login");
     }
